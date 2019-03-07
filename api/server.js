@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const knex = require('knex');
-const db = require('./api/dbConfig.js');
+const db = require('./dbConfig.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
