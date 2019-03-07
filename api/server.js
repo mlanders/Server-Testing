@@ -18,7 +18,12 @@ server.use(morgan('dev'));
 server.use(express.json());
 
 server.get('/', (req, res) => {
-	res.send('Sanity Check');
+	res.send(['Sanity Check']);
+});
+
+server.get('/api/dogs', async (req, res) => {
+	const dogs = await db('dogs');
+	res.status(200).json({ dogs });
 });
 
 module.exports = server;
