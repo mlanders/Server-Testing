@@ -1,20 +1,10 @@
-// yarn add express sqlite3 helmet morgan cors knex bcryptjs jsonwebtoken dotenv faker pg
-// yarn add nodemon --dev
 require('dotenv').config();
 const express = require('express');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const cors = require('cors');
-const knex = require('knex');
 const db = require('./dbConfig.js');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const Dogs = require('../dogs/dogsModel');
 
 const server = express();
 
-server.use(helmet());
-server.use(cors());
-server.use(morgan('dev'));
 server.use(express.json());
 
 server.get('/', (req, res) => {
@@ -24,6 +14,16 @@ server.get('/', (req, res) => {
 server.get('/api/dogs', async (req, res) => {
 	const dogs = await db('dogs');
 	res.status(200).json({ dogs });
+});
+
+server.post('/api/dogs', async (req, res) => {
+	const dogs = await Dogs.insert(req.body);
+	res.status(201).json({ dogs });
+});
+
+server.delete('/api/dogs', async (req, res) => {
+	const dogs = await Dogs.remove(req.body);
+	res.status(201).json({ dogs });
 });
 
 module.exports = server;
