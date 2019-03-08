@@ -18,12 +18,12 @@ server.get('/api/dogs', async (req, res) => {
 
 server.post('/api/dogs', async (req, res) => {
 	const dogs = await Dogs.insert(req.body);
-	res.status(201).json({ dogs });
+	res.status(201).json(dogs);
 });
 
 server.delete('/api/dogs', async (req, res) => {
 	const dogs = await Dogs.remove(req.body);
-	res.status(201).json({ dogs });
+	res.status(204).json({ dogs });
 });
 
 module.exports = server;

@@ -8,7 +8,7 @@ describe('set of tests', () => {
 	test('insert a dog and return the dogs name', async () => {
 		const newDog = { name: 'fido' };
 		const res = await Dogs.insert(newDog);
-		expect(res.name).toEqual('fido');
+		expect(res.name).toBe('fido');
 	});
 	test('remove a dog', async () => {
 		const id = await Dogs.insert({ name: 'fido' });
